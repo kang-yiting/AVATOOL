@@ -2,10 +2,10 @@
 README使用教學
 
 
-
 * https://ithelp.ithome.com.tw/articles/10203758
 * https://markdownlivepreview.com/
 * https://markdown.tw/
+* https://ed521.github.io/2019/08/hexo-markdown/
 
 ```
 - 這是清單
@@ -44,5 +44,5 @@ README使用教學
 前者為 [ ]：中括號內需要補上連結的顯示文字。
 後者為 ( )：小括號內補上的是連結路徑。
 以下為連結範例：Google
-[Google](https://www.google.com.tw/)
 ```
+[Google](https://www.google.com.tw/)
