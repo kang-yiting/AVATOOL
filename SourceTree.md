@@ -23,7 +23,9 @@ Git 可以分為 Local（本地）和 Remote（遠端）兩個環境，。在 Lo
         git push
         git status
 ---
+`創git時要創建.gitignore檔`
 
+---
 Git 術語及中英文對照
 https://www.itread01.com/content/1543581242.html
 
