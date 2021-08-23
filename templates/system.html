@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+  <script>
+<!--loop()
+  function loop(){
+   var sWord =""
+   while (sWord !=8228)
+   {
+    sWord = prompt("密碼輸入:")
+   }
+  }-->
+  </script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" href="/static/images/LOGO_title.png" type="image/x-icon"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+
+        <title>{{dictionary['title']}}</title>
+		<style type="text/css">
+
+		.Data-Content {
+        width: 100%; /* 表單寬度 */
+        line-height: 38px;
+		}
+
+		.Data-Title {
+			float: left;
+			width: 50%; /* Label寬度，視情況調整 */
+			margin-right: 20px;
+		}
+
+		.Data-Items {
+			float: left;
+			width: 25%;
+			line-height:39px;
+		}
+
+		.AlignRight {
+			text-align: right;
+		}
+
+		.mytext {
+			width: 150px;
+			padding: 2px; //欄位內距
+		}
+
+		.mytext2 {
+		width: 55px;
+		padding: 1px; //欄位內距
+		}
+
+		</style>
+
+		<script>
+		function isHidden(oDiv){
+		var vDiv = document.getElementById(oDiv);
+		vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';
+		}
+		</script>
+</head>
+
+<body>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <img src="/static/images/LOGO.PNG" width="120px;" style="margin-right: 5px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+				<a class="nav-item nav-link active" href=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+				<form id="form1" name="form1" method="post" action={{url_for('system_model') }}>
+				<label>{{dictionary['model']}}：</label>
+				<select name="model" class="mytext">
+				{%for i in range(1,modelsize)%}
+				<option value="{{model[0][i]}}" {% if model[1][i]!=Null%}{% if modelvalue==model[0][i] %} selected= "selected"{% endif %}>{{model[1][i]}}{% endif %}</option>
+				{%endfor%}
+				</select>&nbsp;&nbsp;
+				<input id="submit1" name="submit1" type="submit" value="Read">
+				</form>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<form id="form2" name="form2" method="post" action={{url_for('system_addr') }}>
+				<label>Address：</label>
+				<input class="mytext2" type="text" name="addr" value={{addr}}>&nbsp;
+				<input id="submit2" name="submit2" type="submit" value="Read">
+				</form>
+
+                </div>
+            </div>
+        </nav>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+	<!---Menu---------------->
+	<form id="button1" name="button1" style="position: absolute; top:14%;right:90%;">
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/settings">{{dictionary['list1']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/status">{{dictionary['list2']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/smoke">{{dictionary['list3']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/flow">{{dictionary['list4']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/filter">{{dictionary['list5']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-secondary" href="http://127.0.0.1:5000/system">{{dictionary['list6']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/advanced">{{dictionary['list7']}}</a><br />
+		{%if model[88][seti]=="1" %}
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/zone_relay">{{dictionary['list8']}}</a><br />{%endif%}
+	</form>
+
+	</div>
+	<form id="form3" name="form3" method="post" action={{url_for('system_parameter') }}>
+	<div class="Data-Content">
+		<div class="Data-Title">
+			<div class="AlignRight">
+			{%if model[7][seti]=="1" %}   <!--Address-->
+			<label>{{dictionary['system1']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select46" min="1" max="250" step="1" value={{addrchange}}><br />
+			{%endif%}
+			{%if model[8][seti]=="1" %}   <!--Year-->
+			<label>{{dictionary['system2']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select1" min="2013" max="2099" step="1" value=20{{year}}><br />
+			{%endif%}
+			{%if model[9][seti]=="1" %}   <!--Month-->
+			<label>{{dictionary['system3']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select2" min="1" max="12" value={{mont}}><br />
+			{%endif%}
+			{%if model[10][seti]=="1" %}   <!--Day-->
+            <label>{{dictionary['system4']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select3" min="1" max="31" value={{dayy}}><br />
+			{%endif%}
+			{%if model[11][seti]=="1" %}   <!--Hour-->
+            <label>{{dictionary['system5']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select4" min="0" max="23" value={{hourr}}><br />
+			{%endif%}
+			{%if model[12][seti]=="1" %}   <!--Minute-->
+			<label>{{dictionary['system6']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select5" min="0" max="59" value={{minn}}><br />
+			{%endif%}
+			{%if model[13][seti]=="1" %}   <!--Second-->
+			<label>{{dictionary['system7']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select6" min="0" max="59" value={{secc}}><br />
+			{%endif%}
+
+
+			<div style="cursor:pointer" onclick="isHidden('div1')">more</br></div>
+			<div id ="div1" style="display:none">
+			{%if model[14][seti]=="1" %}   <!--RTC-->
+			<label>{{dictionary['system8']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select7" value="1" {% if rtcc==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select7" value="0" {% if rtcc==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[15][seti]=="1" %}   <!--Default-->
+			<label>{{dictionary['system9']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select8" value="1" {% if deff==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select8" value="0" {% if deff==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[16][seti]=="1" %}   <!--Relay Board 1 Used-->
+			<label>{{dictionary['system10']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select9" value="1" {% if rb1==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select9" value="0" {% if rb1==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[17][seti]=="1" %}   <!--Relay Board 2 Used-->
+			<label>{{dictionary['system11']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select10" value="1" {% if rb2==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select10" value="0" {% if rb2==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[18][seti]=="1" %}   <!--LED Board 1 Used-->
+			<label>{{dictionary['system12']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select11" value="1" {% if lb1==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select11" value="0" {% if lb1==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[19][seti]=="1" %}   <!--LED Board 2 Used-->
+			<label>{{dictionary['system13']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select12" value="1" {% if lb2==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select12" value="0" {% if lb2==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[20][seti]=="1" %}   <!--Display Board Used-->
+			<label>{{dictionary['system14']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select13" value="1" {% if lbu==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select13" value="0" {% if lbu==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[21][seti]=="1" %}   <!--Panel buzzer status-->
+			<label>{{dictionary['system15']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select14" min="0" max="4" value={{pbs}}><br />
+			{%endif%}
+			{%if model[22][seti]=="1" %}   <!--Panel display mode-->
+			<label>{{dictionary['system16']}}：</label>
+			<input class="mytext" type="number" style="width:171px;height:45px;" name="select15" value={{pdm}}><br />
+			{%endif%}
+			{%if model[23][seti]=="1" %}   <!--Test Button Enable-->
+			<label>{{dictionary['system17']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select16" value="1" {% if tel==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select16" value="0" {% if tel==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[24][seti]=="1" %}   <!--Silence Button Enable-->
+			<label>{{dictionary['system18']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select17" value="1" {% if sil==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select17" value="0" {% if sil==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[25][seti]=="1" %}   <!--Isolate Button Enable-->
+			<label>{{dictionary['system19']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select18" value="1" {% if isl==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select18" value="0" {% if isl==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[26][seti]=="1" %}   <!--Reset Button Enable-->
+			<label>{{dictionary['system20']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select19" value="1" {% if resl==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select19" value="0" {% if resl==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[27][seti]=="1" %}   <!--Cascade Alarm-->
+			<label>{{dictionary['system21']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select20" value="1" {% if sta==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select20" value="0" {% if sta==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[28][seti]=="1" %}   <!--Alarm Latch-->
+			<label>{{dictionary['system22']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select21" value="1" {% if all==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select21" value="0" {% if all==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[29][seti]=="1" %}   <!--Fault Latch-->
+			<label>{{dictionary['system23']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select22" value="1" {% if fal==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select22" value="0" {% if fal==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[30][seti]=="1" %}   <!--Fault Delay-->
+			<label>{{dictionary['system24']}}：</label>
+			<input class="mytext" type="number"  name="select23" style="width:171px;height:45px;" min="0" max="60" value={{fad}}><br />
+			{%endif%}
+			{%if model[31][seti]=="1" %}   <!--rel1-->
+			<label>{{dictionary['system25']}}：</label>
+			<select name="select24" style="width:171px;">
+				<option value="1" {% if rel1==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel1==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel1==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel1==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel1==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel1==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel1==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[32][seti]=="1" %}   <!--rel2-->
+			<label>{{dictionary['system26']}}：</label>
+			<select name="select25" style="width:171px;">
+				<option value="1" {% if rel2==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel2==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel2==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel2==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel2==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel2==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel2==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[33][seti]=="1" %}   <!--rel3-->
+			<label>{{dictionary['system27']}}：</label>
+			<select name="select26" style="width:171px;">
+				<option value="1" {% if rel3==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel3==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel3==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel3==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel3==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel3==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel3==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[34][seti]=="1" %}   <!--rel4-->
+			<label>{{dictionary['system28']}}：</label>
+			<select name="select27" style="width:171px;">
+				<option value="1" {% if rel4==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel4==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel4==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel4==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel4==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel4==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel4==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[35][seti]=="1" %}   <!--rel5-->
+			<label>{{dictionary['system29']}}：</label>
+			<select name="select28" style="width:171px;">
+				<option value="1" {% if rel5==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel5==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel5==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel5==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel5==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel5==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel5==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[36][seti]=="1" %}   <!--rel6-->
+			<label>{{dictionary['system30']}}：</label>
+			<select name="select29" style="width:171px;">
+				<option value="1" {% if rel6==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel6==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel6==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel6==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel6==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel6==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel6==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[37][seti]=="1" %}   <!--rel7-->
+			<label>{{dictionary['system31']}}：</label>
+			<select name="select30" style="width:171px;">
+				<option value="1" {% if rel7==1 %} selected="selected"{% endif %}>Isolate</option>
+				<option value="2" {% if rel7==2 %} selected="selected"{% endif %}>Fault</option>
+				<option value="3" {% if rel7==3 %} selected="selected"{% endif %}>Alert</option>
+				<option value="4" {% if rel7==4 %} selected="selected"{% endif %}>Action</option>
+				<option value="5" {% if rel7==5 %} selected="selected"{% endif %}>Fire1</option>
+				<option value="6" {% if rel7==6 %} selected="selected"{% endif %}>Fire2</option>
+				<option value="7" {% if rel7==7 %} selected="selected"{% endif %}>Aux.</option>
+			</select><br />
+			{%endif%}
+			{%if model[38][seti]=="1" %}   <!--gpi1-->
+			<label>{{dictionary['system32']}}：</label>
+			<select name="select31" >
+				<option value="0" {% if gpi1==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if gpi1==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if gpi1==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if gpi1==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if gpi1==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if gpi1==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if gpi1==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if gpi1==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if gpi1==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if gpi1==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if gpi1==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if gpi1==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if gpi1==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if gpi1==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if gpi1==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[39][seti]=="1" %}  <!--gpi2-->
+			<label>{{dictionary['system33']}}：</label>
+			<select name="select32" >
+				<option value="0" {% if rr.registers[32]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[32]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[32]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[32]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[32]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[32]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[32]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[32]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[32]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[32]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[32]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[32]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[32]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[32]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[32]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[40][seti]=="1" %}  <!--gpi3-->
+			<label>{{dictionary['system34']}}：</label>
+			<select name="select33" >
+				<option value="0" {% if rr.registers[33]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[33]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[33]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[33]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[33]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[33]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[33]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[33]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[33]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[33]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[33]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[33]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[33]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[33]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[33]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[41][seti]=="1" %}  <!--gpi4-->
+			<label>{{dictionary['system35']}}：</label>
+			<select name="select34" >
+				<option value="0" {% if rr.registers[34]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[34]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[34]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[34]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[34]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[34]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[34]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[34]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[34]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[34]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[34]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[34]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[34]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[34]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[34]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[42][seti]=="1" %}  <!--gpi5-->
+			<label>{{dictionary['system36']}}：</label>
+			<select name="select35" >
+				<option value="0" {% if rr.registers[35]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[35]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[35]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[35]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[35]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[35]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[35]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[35]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[35]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[35]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[35]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[35]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[35]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[35]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[35]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[43][seti]=="1" %}  <!--gpi6-->
+			<label>{{dictionary['system37']}}：</label>
+			<select name="select36" >
+				<option value="0" {% if rr.registers[36]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[36]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[36]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[36]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[36]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[36]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[36]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[36]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[36]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[36]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[36]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[36]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[36]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[36]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[36]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[44][seti]=="1" %}  <!--gpi7-->
+			<label>{{dictionary['system38']}}：</label>
+			<select name="select37" >
+				<option value="0" {% if rr.registers[37]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[37]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[37]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[37]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[37]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[37]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[37]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[37]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[37]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[37]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[37]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[37]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[37]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[37]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[37]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[45][seti]=="1" %}  <!--gpi8-->
+			<label>{{dictionary['system39']}}：</label>
+			<select name="select38" >
+				<option value="0" {% if rr.registers[38]==0 %} selected="selected"{% endif %}>NOT USED</option>
+				<option value="1" {% if rr.registers[38]==1 %} selected="selected"{% endif %}>RESET</option>
+				<option value="2" {% if rr.registers[38]==2 %} selected="selected"{% endif %}>ISOLATE</option>
+				<option value="3" {% if rr.registers[38]==3 %} selected="selected"{% endif %}>SILENCE</option>
+				<option value="4" {% if rr.registers[38]==4 %} selected="selected"{% endif %}>TEST</option>
+				<option value="5" {% if rr.registers[38]==5 %} selected="selected"{% endif %}>MAIN FAULT</option>
+				<option value="6" {% if rr.registers[38]==6 %} selected="selected"{% endif %}>BATT FAULT</option>
+				<option value="7" {% if rr.registers[38]==7 %} selected="selected"{% endif %}>POWER FAULT</option>
+				<option value="8" {% if rr.registers[38]==8 %} selected="selected"{% endif %}>SENSITIVITY MODE 1</option>
+				<option value="9" {% if rr.registers[38]==9 %} selected="selected"{% endif %}>SENSITIVITY MODE 2</option>
+				<option value="11" {% if rr.registers[38]==11 %} selected="selected"{% endif %}>UDI-1</option>
+				<option value="12" {% if rr.registers[38]==12 %} selected="selected"{% endif %}>UDI-2</option>
+				<option value="13" {% if rr.registers[38]==13 %} selected="selected"{% endif %}>UDI-3</option>
+				<option value="14" {% if rr.registers[38]==14 %} selected="selected"{% endif %}>UDI-4</option>
+				<option value="15" {% if rr.registers[38]==15 %} selected="selected"{% endif %}>UDI-5</option>
+			</select><br />
+			{%endif%}
+			{%if model[50][seti]=="1" %}   <!--Scan enabled-->
+			<label>{{dictionary['system40']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select39" value="1" {% if rr.registers[43]==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select39" value="0" {% if rr.registers[43]==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[51][seti]=="1" %}  <!--gpi8-->
+			<label>{{dictionary['system41']}}：</label>
+			<input class="mytext" style="width:170px;height:45px;" type="number" min="0" max="4" name="select40" value={{rr.registers[44]}}><br />
+			{%endif%}
+			{%if model[52][seti]=="1" %}  <!--gpi8-->
+			<label>{{dictionary['system42']}}：</label>
+			<input class="mytext" style="width:170px;height:45px;" type="number" min="5" max="60"  name="select41" value={{rr.registers[45]}}><br />
+			{%endif%}
+			</div>
+			<input id="submit3" name="submit3" type="submit" value="ENTER">
+		</div>
+	</div></div>
+
+	</form>
+
+</body>
+</html>

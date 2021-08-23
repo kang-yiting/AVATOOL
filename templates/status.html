@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv=Refresh content=1 action={{url_for('status') }};>
+    <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" href="/static/images/LOGO_title.PNG" type="image/x-icon"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+
+        <title>{{dictionary['title']}}</title>
+		<style type="text/css">
+			#title{
+				position: absolute;
+				top: 0%;
+				box-shadow: 0px 1px 2px #000;
+			}
+			#box{
+				position: absolute;
+				top: 20%;
+				left: 20%;
+				box-shadow: 0px 1px 2px #000;
+				width: 50%;
+				height: 80%;
+				box-sizing: border-box;
+			}
+			#led{
+				text-align: center;
+				width: 25%;
+				height: 65%;
+    			float: left;
+    			border-bottom: 2px solid #dedede;
+    			padding-top:5%
+			}
+			#status1{
+				text-align: right;
+				width: 75%;
+				height: 55%;
+    			float: right;
+    			border-bottom: 2px solid #dedede;
+    			border-left: 2px solid #dedede;
+    			padding:5% 5% 0% 0%
+			}
+			#con{
+				text-align: center;
+				width: 75%;
+				height: 10%;
+    			float: right;
+    			border-bottom: 2px solid #dedede;
+    			border-left: 2px solid #dedede;
+    			padding:0% 0% 0% 3%
+			}
+			#status2{
+				width: 100%;
+				height: 35%;
+    			clear:both;
+    			padding:1% 5% 0% 5%
+			}
+
+		</style>
+</head>
+
+<body>
+<script type="text/javascript">
+		function changefiretwo() {
+				light = document.getElementById("firetwo");
+				if ({{firetwo}}==1) {
+					light.src = "/static/images/red.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+		function changefireone() {
+				light = document.getElementById("fireone");
+				if ({{fireone}}==1) {
+					light.src = "/static/images/red.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+		function changeaction() {
+				light = document.getElementById("action");
+				if ({{action}}==1) {
+					light.src = "/static/images/red.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+		function changealert() {
+				light = document.getElementById("alert");
+				if ({{alert}}==1) {
+					light.src = "/static/images/red.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+		function changeisolate() {
+				light = document.getElementById("isolate");
+				if ({{isolate}}==1) {
+					light.src = "/static/images/blue.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+		function changeallok() {
+				light = document.getElementById("allok");
+				if ({{allok}}==1) {
+					light.src = "/static/images/yellow.gif";
+
+				} else {
+					light.src = "/static/images/gray.gif";
+				}
+			}
+</script>
+<div id="title">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <img src="/static/images/LOGO.PNG" width="120px;" style="margin-right: 5px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+				<a class="nav-item nav-link active" href=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+				<form id="form1" name="form1">
+				<label>{{dictionary['model']}}：{{model[1][seti]}}</label>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>{{dictionary['address']}}：{{addr}}</label>
+				</form>
+                </div>
+            </div>
+        </nav></div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+	<!---Menu---------------->
+	<form id="button1" name="button1" style="position: absolute; top:14%;right:90%;">
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/settings">{{dictionary['list1']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-secondary" href="http://127.0.0.1:5000/status">{{dictionary['list2']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/smoke">{{dictionary['list3']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/flow">{{dictionary['list4']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/filter">{{dictionary['list5']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/system">{{dictionary['list6']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/advanced">{{dictionary['list7']}}</a><br />
+		{%if model[88][seti]=="1" %}
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/zone_relay">{{dictionary['list8']}}</a><br />{%endif%}
+	</form>
+
+
+<div id="box">
+<div id="led"><!--燈泡控制處-->
+<img src="/static/images/gray.gif" id="firetwo" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status3']}}
+{%if firetwo==1 %}
+<script type="text/javascript">
+changefiretwo()
+</script>
+{%endif%}<br><br>
+
+<img src="/static/images/gray.gif" id="fireone" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status4']}}
+{%if fireone==1 %}
+<script type="text/javascript">
+changefireone()
+</script>
+{%endif%}<br><br>
+
+<img src="/static/images/gray.gif" id="action" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status5']}}
+{%if action==1 %}
+<script type="text/javascript">
+changeaction()
+</script>
+{%endif%}<br><br>
+
+<img src="/static/images/gray.gif" id="alert" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status6']}}
+{%if alert==1 %}
+<script type="text/javascript">
+changealert()
+</script>
+{%endif%}<br><br>
+
+<img src="/static/images/gray.gif" id="isolate" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status7']}}
+{%if isolate==1 %}
+<script type="text/javascript">
+changeisolate()
+</script>
+{%endif%}<br><br>
+
+<img src="/static/images/gray.gif" id="allok" height="25px" width="25px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		{{dictionary['status8']}}
+{%if allok==1 %}
+<script type="text/javascript">
+changeallok()
+</script>
+{%endif%}<br><br>
+</div>
+
+<!--裝置數值顯示處-->
+	<div form id="status1" name="status1" method="post" action={{url_for('status') }}>
+		<!--判斷smoke的zone used是否有開啟-->
+		{% if zu[0] == 1%}  <!--pipe1有開啟-->
+			<label>Smoke %obs/m：{{smoke1}}</label><br>{%endif%}
+		{% if zu[0] == 0%}
+			<img src="/static/images/x.gif" height="15px" width="15px" >
+			<label>Smoke %obs/m：0</label><br>{%endif%}
+		{% if model[2][seti] == "4" %}  <!--有四個管要判斷-->
+			{% if zu[1] == 1%}
+			<label>Smoke %obs/m：{{smoke2}}</label><br>{%endif%}
+			{% if zu[1] == 0%}
+			<img src="/static/images/x.gif" height="15px" width="15px" >
+			<label>Smoke %obs/m：0</label><br>{%endif%}
+			{% if zu[2] == 1%}
+			<label>Smoke %obs/m：{{smoke3}}</label><br>{%endif%}
+			{% if zu[2] == 0%}
+			<img src="/static/images/x.gif" height="15px" width="15px" >
+			<label>Smoke %obs/m：0</label><br>{%endif%}
+			{% if zu[3] == 1%}
+			<label>Smoke %obs/m：{{smoke4}}</label><br>{%endif%}
+			{% if zu[3] == 0%}
+			<img src="/static/images/x.gif" height="15px" width="15px" >
+			<label>Smoke %obs/m：0</label><br>{%endif%}
+		{%endif%}
+		<!--判斷flow的pipe used是否有開啟-->
+		{% if pu[0] == 1%}  <!--pipe1有開啟-->
+			<label>Flow %：{{rr1.registers[3]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：{{rr1.registers[4]}}</label><br>{%endif%}
+		{% if pu[0] == 0%} <!--pipe1沒開啟-->
+			<img src="/static/images/x.gif" height="10px" width="10px" >
+			<label>Flow %：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：0</label><br>{%endif%}
+		{% if model[3][seti] == "4" %}  <!--有四個管要判斷-->
+			{% if pu[1] == 1%}	<!--pipe2有開啟-->
+				<label>Flow %：{{rr2.registers[3]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：{{rr2.registers[4]}}</label><br>{%endif%}
+			{% if pu[1] == 0%}
+				<img src="/static/images/x.gif" height="10px" width="10px" >
+				<label>Flow %：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：0</label><br>{%endif%}
+			{% if pu[2] == 1%}  <!--pipe3有開啟-->
+				<label>Flow %：{{rr3.registers[3]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：{{rr3.registers[4]}}</label><br>{%endif%}
+			{% if pu[2] == 0%}
+				<img src="/static/images/x.gif" height="10px" width="10px" >
+				<label>Flow %：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：0</label><br>{%endif%}
+			{% if pu[3] == 1%}
+			<label>Flow %：{{rr4.registers[3]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：{{rr4.registers[4]}}</label><br>{%endif%}
+			{% if pu[3] == 0%}
+			<img src="/static/images/x.gif" height="10px" width="10px" >
+			<label>Flow %：0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flow Raw：0</label><br>{%endif%}
+		{%endif%}
+		</form></div>
+
+<!--裝置按鈕控制處-->
+<div id="con" class="form-inline">
+<form class="form-group" name="control" method="post" action="/control_iso/">
+    <input id="submit3" name="submit3" type="submit" value="Isolate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+<form class="form-group" name="control" method="post" action="/control_uniso/">
+    <input id="submit4" name="submit4" type="submit" value="DeIsolate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+<form class="form-group" name="control" method="post" action="/control_sil/">
+    <input id="submit5" name="submit5" type="submit" value="Silence">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+<form class="form-group" name="control" method="post" action="/control_test/">
+    <input id="submit7" name="submit7" type="submit" value="Test">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+<form class="form-group" name="control" method="post" action="/control_reset/">
+    <input id="submit8" name="submit8" type="submit" value="Reset">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</form>
+</div>
+	<div form id="status2" name="status2" method="post" action={{url_for('status') }}>
+		<label style="text-align: left;" >{{dictionary['status9']}}：</label><br>
+		{% if rr5.registers[0] == 0 %}<label> - Normal.</label>{% endif %}
+		{% if devi[0] == 1 %}<label> - {{dictionary['DetectionCondition1']}}</label>{% endif %} <!--協定17-->
+		{% if devi[1] == 1 %}<label> - {{dictionary['DetectionCondition2']}}</label>{% endif %}
+		{% if devi[2] == 1 %}<label> - {{dictionary['DetectionCondition3']}}</label>{% endif %}
+		{% if devi[3] == 1 %}<label> - {{dictionary['DetectionCondition4']}}</label>{% endif %}
+		{% if devi[4] == 1 %}<label> - {{dictionary['DetectionCondition5']}}</label>{% endif %}
+		{% if devi[5] == 1 %}<label> - {{dictionary['DetectionCondition6']}}</label>{% endif %}
+		{% if devi[6] == 1 %}<label> - {{dictionary['DetectionCondition7']}}</label>{% endif %}
+		{% if devi[7] == 1 %}<label> - {{dictionary['DetectionCondition8']}}</label>{% endif %}
+		{% if devi[8] == 1 %}<label> - {{dictionary['DetectionCondition9']}}</label>{% endif %}
+		{% if devi[9] == 1 %}<label> - {{dictionary['DetectionCondition10']}}</label>{% endif %}
+		{% if devi[10] == 1 %}<label> - {{dictionary['DetectionCondition11']}}</label>{% endif %}
+		{% if devi[11] == 1 %}<label> - {{dictionary['DetectionCondition12']}}</label>{% endif %}
+		{% if devi[12] == 1 %}<label> - {{dictionary['DetectionCondition13']}}</label>{% endif %}
+		{% if devi[13] == 1 %}<label> - {{dictionary['DetectionCondition14']}}</label>{% endif %}
+		{% if devi[14] == 1 %}<label> - {{dictionary['DetectionCondition15']}}</label>{% endif %}
+		{% if devi[15] == 1 %}<label> - {{dictionary['DetectionCondition16']}}</label>{% endif %}<br>
+		
+		<label style="text-align: left;" >{{dictionary['status1']}}：</label><br>
+		{% if rr1.registers[0] == 0 %}{% if rr1.registers[5] == 0 %}{% if rr5.registers[0] == 0 %}{% if devicecon == 0 %}<label> - Normal.</label>{% endif %}{% endif %}{% endif %}{% endif %}
+		
+		{% if detncondition[0] == 1 %}<label> - {{dictionary['DetectionCondition1']}}</label>{% endif %} <!--管1 bi 協定1000--><!--fire2-->
+		{% if detncondition[1] == 1 %}<label> - {{dictionary['DetectionCondition2']}}</label>{% endif %} <!--fire1-->
+		{% if detncondition[2] == 1 %}<label> - {{dictionary['DetectionCondition3']}}</label>{% endif %} <!--action-->
+		{% if detncondition[3] == 1 %}<label> - {{dictionary['DetectionCondition4']}}</label>{% endif %} <!--alert-->
+		{% if detncondition[6] == 1 %}<label> - {{dictionary['DetectionCondition7']}}</label>{% endif %} <!--isolate-->
+		{% if detncondition[10] == 1 %}<label> - {{dictionary['DetectionCondition11']}}</label>{% endif %} <!--系統故障燈-->
+		{% if detncondition[14] == 1 %}<label> - {{dictionary['DetectionCondition15']}}</label>{% endif %} <!--煙霧學習狀態-->
+		
+		{% if faultcondition[0] == 1 %}<label> - {{dictionary['FaultCondition1']}}</label>{% endif %} <!--管1 be 協定1005-->
+		{% if faultcondition[1] == 1 %}<label> - {{dictionary['FaultCondition2']}}</label>{% endif %}
+		{% if faultcondition[2] == 1 %}<label> - {{dictionary['FaultCondition3']}}</label>{% endif %}
+		{% if faultcondition[3] == 1 %}<label> - {{dictionary['FaultCondition4']}}</label>{% endif %}
+		{% if faultcondition[14] == 1 %}<label> - {{dictionary['FaultCondition15']}}</label>{% endif %}
+		{% if detncondition[4] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition5']}}</label>{% endif %}
+		{% if detncondition[5] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition6']}}</label>{% endif %}
+		{% if detncondition[7] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition8']}}</label>{% endif %}
+		{% if detncondition[8] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition9']}}</label>{% endif %}
+		{% if detncondition[9] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition10']}}</label>{% endif %}
+		{% if detncondition[11] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition12']}}</label>{% endif %}
+		{% if detncondition[12] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition13']}}</label>{% endif %}
+		{% if detncondition[13] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition14']}}</label>{% endif %}
+		{% if detncondition[15] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['DetectionCondition16']}}</label>{% endif %}
+		
+		{% if faultcondition[4] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition5']}}</label>{% endif %}<!--管1 be 協定1005-->
+		{% if faultcondition[5] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition6']}}</label>{% endif %}
+		{% if faultcondition[6] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition7']}}</label>{% endif %}
+		{% if faultcondition[7] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition8']}}</label>{% endif %}
+		{% if faultcondition[8] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition9']}}</label>{% endif %}
+		{% if faultcondition[9] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition10']}}</label>{% endif %}
+		{% if faultcondition[10] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition11']}}</label>{% endif %}
+		{% if faultcondition[11] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition12']}}</label>{% endif %}
+		{% if faultcondition[12] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition13']}}</label>{% endif %}
+		{% if faultcondition[13] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition14']}}</label>{% endif %}
+		{% if faultcondition[15] == 1 %}<label> - {{dictionary['pipe1']}}{{dictionary['FaultCondition16']}}</label>{% endif %} <br>
+		
+		{% if detncondition[16] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition1']}}</label>{% endif %} <!--管2 bi 協定1000-->
+		{% if detncondition[17] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition2']}}</label>{% endif %}
+		{% if detncondition[18] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition3']}}</label>{% endif %}
+		{% if detncondition[19] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition4']}}</label>{% endif %}
+		{% if detncondition[20] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition5']}}</label>{% endif %}
+		{% if detncondition[21] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition6']}}</label>{% endif %}
+		{% if detncondition[22] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition7']}}</label>{% endif %}
+		{% if detncondition[23] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition8']}}</label>{% endif %}
+		{% if detncondition[24] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition9']}}</label>{% endif %}
+		{% if detncondition[25] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition10']}}</label>{% endif %}
+		{% if detncondition[26] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition11']}}</label>{% endif %}
+		{% if detncondition[27] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition12']}}</label>{% endif %}
+		{% if detncondition[28] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition13']}}</label>{% endif %}
+		{% if detncondition[29] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition14']}}</label>{% endif %}
+		{% if detncondition[30] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition15']}}</label>{% endif %}
+		{% if detncondition[31] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['DetectionCondition16']}}</label>{% endif %}
+		
+		{% if faultcondition[16] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition1']}}</label>{% endif %}<!--管2 be 協定1005-->
+		{% if faultcondition[17] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition2']}}</label>{% endif %}
+		{% if faultcondition[18] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition3']}}</label>{% endif %}
+		{% if faultcondition[19] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition4']}}</label>{% endif %}
+		{% if faultcondition[20] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition5']}}</label>{% endif %}
+		{% if faultcondition[21] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition6']}}</label>{% endif %}
+		{% if faultcondition[22] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition7']}}</label>{% endif %}
+		{% if faultcondition[23] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition8']}}</label>{% endif %}
+		{% if faultcondition[24] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition9']}}</label>{% endif %}
+		{% if faultcondition[25] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition10']}}</label>{% endif %}
+		{% if faultcondition[26] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition11']}}</label>{% endif %}
+		{% if faultcondition[27] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition12']}}</label>{% endif %}
+		{% if faultcondition[28] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition13']}}</label>{% endif %}
+		{% if faultcondition[29] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition14']}}</label>{% endif %}
+		{% if faultcondition[30] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition15']}}</label>{% endif %}
+		{% if faultcondition[31] == 1 %}<label> - {{dictionary['pipe2']}}{{dictionary['FaultCondition16']}}</label>{% endif %}<br>
+		
+		{% if detncondition[32] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition1']}}</label>{% endif %} <!--管3 bi 協定1000-->
+		{% if detncondition[33] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition2']}}</label>{% endif %}
+		{% if detncondition[34] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition3']}}</label>{% endif %}
+		{% if detncondition[35] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition4']}}</label>{% endif %}
+		{% if detncondition[36] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition5']}}</label>{% endif %}
+		{% if detncondition[37] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition6']}}</label>{% endif %}
+		{% if detncondition[38] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition7']}}</label>{% endif %}
+		{% if detncondition[39] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition8']}}</label>{% endif %}
+		{% if detncondition[40] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition9']}}</label>{% endif %}
+		{% if detncondition[41] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition10']}}</label>{% endif %}
+		{% if detncondition[42] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition11']}}</label>{% endif %}
+		{% if detncondition[43] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition12']}}</label>{% endif %}
+		{% if detncondition[44] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition13']}}</label>{% endif %}
+		{% if detncondition[45] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition14']}}</label>{% endif %}
+		{% if detncondition[46] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition15']}}</label>{% endif %}
+		{% if detncondition[47] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['DetectionCondition16']}}</label>{% endif %}
+		
+		{% if faultcondition[32] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition1']}}</label>{% endif %}<!--管3 be 協定1005-->
+		{% if faultcondition[33] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition2']}}</label>{% endif %}
+		{% if faultcondition[34] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition3']}}</label>{% endif %}
+		{% if faultcondition[35] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition4']}}</label>{% endif %}
+		{% if faultcondition[36] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition5']}}</label>{% endif %}
+		{% if faultcondition[37] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition6']}}</label>{% endif %}
+		{% if faultcondition[38] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition7']}}</label>{% endif %}
+		{% if faultcondition[39] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition8']}}</label>{% endif %}
+		{% if faultcondition[40] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition9']}}</label>{% endif %}
+		{% if faultcondition[41] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition10']}}</label>{% endif %}
+		{% if faultcondition[42] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition11']}}</label>{% endif %}
+		{% if faultcondition[43] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition12']}}</label>{% endif %}
+		{% if faultcondition[44] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition13']}}</label>{% endif %}
+		{% if faultcondition[45] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition14']}}</label>{% endif %}
+		{% if faultcondition[46] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition15']}}</label>{% endif %}
+		{% if faultcondition[47] == 1 %}<label> - {{dictionary['pipe3']}}{{dictionary['FaultCondition16']}}</label>{% endif %}<br>
+		
+		{% if detncondition[48] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition1']}}</label>{% endif %} <!--管4 bi 協定1000-->
+		{% if detncondition[49] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition2']}}</label>{% endif %}
+		{% if detncondition[50] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition3']}}</label>{% endif %}
+		{% if detncondition[51] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition4']}}</label>{% endif %}
+		{% if detncondition[52] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition5']}}</label>{% endif %}
+		{% if detncondition[53] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition6']}}</label>{% endif %}
+		{% if detncondition[54] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition7']}}</label>{% endif %}
+		{% if detncondition[55] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition8']}}</label>{% endif %}
+		{% if detncondition[56] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition9']}}</label>{% endif %}
+		{% if detncondition[57] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition10']}}</label>{% endif %}
+		{% if detncondition[58] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition11']}}</label>{% endif %}
+		{% if detncondition[59] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition12']}}</label>{% endif %}
+		{% if detncondition[60] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition13']}}</label>{% endif %}
+		{% if detncondition[61] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition14']}}</label>{% endif %}
+		{% if detncondition[62] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition15']}}</label>{% endif %}
+		{% if detncondition[63] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['DetectionCondition16']}}</label>{% endif %}
+		
+		{% if faultcondition[48] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition1']}}</label>{% endif %}<!--管4 be 協定1005-->
+		{% if faultcondition[49] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition2']}}</label>{% endif %}
+		{% if faultcondition[50] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition3']}}</label>{% endif %}
+		{% if faultcondition[51] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition4']}}</label>{% endif %}
+		{% if faultcondition[52] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition5']}}</label>{% endif %}
+		{% if faultcondition[53] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition6']}}</label>{% endif %}
+		{% if faultcondition[54] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition7']}}</label>{% endif %}
+		{% if faultcondition[55] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition8']}}</label>{% endif %}
+		{% if faultcondition[56] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition9']}}</label>{% endif %}
+		{% if faultcondition[57] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition10']}}</label>{% endif %}
+		{% if faultcondition[58] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition11']}}</label>{% endif %}
+		{% if faultcondition[59] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition12']}}</label>{% endif %}
+		{% if faultcondition[60] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition13']}}</label>{% endif %}
+		{% if faultcondition[61] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition14']}}</label>{% endif %}
+		{% if faultcondition[62] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition15']}}</label>{% endif %}
+		{% if faultcondition[63] == 1 %}<label> - {{dictionary['pipe4']}}{{dictionary['FaultCondition16']}}</label>{% endif %}<br>
+
+
+    	{% if devicecon == 1 %}
+		{% if devicecondition[0] == 1 %}<label> - {{dictionary['device1']}}</label>{% endif %}
+		{% if devicecondition[1] == 1 %}<label> - {{dictionary['device2']}}</label>{% endif %}
+		{% if devicecondition[2] == 1 %}<label> - {{dictionary['device3']}}</label>{% endif %}
+		{% if devicecondition[3] == 1 %}<label> - {{dictionary['device4']}}</label>{% endif %}
+		{% if devicecondition[4] == 1 %}<label> - {{dictionary['device5']}}</label>{% endif %}
+		{% if devicecondition[5] == 1 %}<label> - {{dictionary['device6']}}</label>{% endif %}
+		{% if devicecondition[6] == 1 %}<label> - {{dictionary['device7']}}</label>{% endif %}
+		{% if devicecondition[7] == 1 %}<label> - {{dictionary['device8']}}</label>{% endif %}
+		{% if devicecondition[8] == 1 %}<label> - {{dictionary['device9']}}</label>{% endif %}
+		{% if devicecondition[9] == 1 %}<label> - {{dictionary['device10']}}</label>{% endif %}
+		{% if devicecondition[10] == 1 %}<label> - {{dictionary['device11']}}</label>{% endif %}
+		{% if devicecondition[11] == 1 %}<label> - {{dictionary['device12']}}</label>{% endif %}
+		{% endif %}
+
+		</form></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" href="/static/images/LOGO_title.PNG" type="image/x-icon"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+
+        <title>{{dictionary['title']}}</title>
+		<style type="text/css">
+
+		.Data-Content {
+        width: 100%; /* 表單寬度 */
+        line-height: 38px;
+		}
+
+		.Data-Title {
+			float: left;
+			width: 50%; /* Label寬度，視情況調整 */
+			margin-right: 20px;
+		}
+
+		.Data-Items {
+			float: left;
+			width: 25%;
+			line-height:39px;
+		}
+
+		.AlignRight {
+			text-align: right;
+		}
+
+		.mytext {
+			width: 150px;
+			padding: 2px; //欄位內距
+		}
+
+		.mytext2 {
+		width: 55px;
+		padding: 1px; //欄位內距
+		}
+
+		</style>
+
+		<script>
+		function isHidden(oDiv){
+		var vDiv = document.getElementById(oDiv);
+		vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';
+		}
+		</script>
+</head>
+
+<body>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <img src="/static/images/LOGO.PNG" width="120px;" style="margin-right: 5px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+				<a class="nav-item nav-link active" href=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+				<form id="form3" name="form3" method="post" action={{url_for('smoke_model') }}>
+				<label>{{dictionary['model']}}：</label>
+				<select name="model" class="mytext">
+				{%for i in range(1,modelsize)%}
+				<option value="{{model[0][i]}}" {% if model[1][i]!=Null%}{% if modelvalue==model[0][i] %} selected= "selected"{% endif %}>{{model[1][i]}}{% endif %}</option>
+				{%endfor%}
+				</select>&nbsp;&nbsp;
+				<input id="submit1" name="submit1" type="submit" value="Read">
+				</form>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<form id="form2" name="form2" method="post" action={{url_for('smoke_addr') }}>
+				<label>{{dictionary['address']}}：</label>
+				<input class="mytext2" type="number" min=1 max=250 name="addr" value={{addr}}>&nbsp;
+				<input id="submit2" name="submit2" type="submit" value="Read">
+
+				</form>
+
+                </div>
+            </div>
+        </nav>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+	<!---Menu---------------->
+	<form id="button1" name="button1" style="position: absolute; top:14%;right:90%;">
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/settings">{{dictionary['list1']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/status">{{dictionary['list2']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-secondary" href="http://127.0.0.1:5000/smoke">{{dictionary['list3']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/flow">{{dictionary['list4']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/filter">{{dictionary['list5']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/system">{{dictionary['list6']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/advanced">{{dictionary['list7']}}</a><br />
+		{%if model[88][seti]=="1" %}
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/zone_relay">{{dictionary['list8']}}</a><br />{%endif%}
+	</form>
+
+	<form method="post" name="pipe"  style="position: absolute; top:14%;right:75%;" action={{url_for('smoke_pipe') }}>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<label>{{dictionary['pipe']}}：</label>
+	<input type="radio" name="pipe" value="1" onchange="submit()" {% if pipe==1 %} checked = "checked"{% endif %}>1&nbsp;
+	{% if model[2][seti] == "4" %}
+		<input type="radio" name="pipe" value="2" onchange="submit()" {% if pipe==2 %} checked = "checked"{% endif %}>2&nbsp;
+		<input type="radio" name="pipe" value="3" onchange="submit()" {% if pipe==3 %} checked = "checked"{% endif %}>3&nbsp;
+		<input type="radio" name="pipe" value="4" onchange="submit()" {% if pipe==4 %} checked = "checked"{% endif %}>4&nbsp;
+	{%endif%}
+	</form>
+
+
+	</div>
+	<form id="form1" name="form1" method="post" action={{url_for('smoke_parameter') }}>
+	<div class="Data-Content">
+		<div class="Data-Title">
+			<div class="AlignRight">
+			{%if model[53][seti]=="1" %}  <!--zone used-->
+			<label>{{dictionary['smoke1']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select1" value="1" {% if rr.registers[0]==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select1" value="0" {% if rr.registers[0]==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[54][seti]=="1" %}  <!--Full Scale Sensitivity-->
+            <label>{{dictionary['smoke2']}}：</label>
+			<input class="mytext" type="number" name="select2" min="0.001" max="20.000" step="0.001" value={{fss}}><br />
+			{%endif%}
+			{%if model[55][seti]=="1" %}  <!--Alert Bargraph Level-->
+            <label>{{dictionary['smoke3']}}：</label>
+			<input class="mytext" type="number" name="select3" min="2" max="20" value={{rr.registers[2]}}><br />
+			{%endif%}
+			{%if model[56][seti]=="1" %}  <!--Action Bargraph Level-->
+			<label>{{dictionary['smoke4']}}：</label>
+			<input class="mytext" type="number" name="select4" min="2" max="20" value={{rr.registers[3]}}><br />
+			{%endif%}
+			{%if model[57][seti]=="1" %}  <!--Fire 1 Bargraph Level-->
+			<label>{{dictionary['smoke5']}}：</label>
+			<input class="mytext" type="number" name="select5" min="20" max="20" value=20><br />
+			{%endif%}
+			{%if model[58][seti]=="1" %}  <!--Fire 2 Level-->
+			<label>{{dictionary['smoke6']}}：</label>
+			<input class="mytext" type="number" name="select6" min="0.10" max="20.00" step="0.01" value={{f2l}}><br />
+			{%endif%}
+			{%if model[59][seti]=="1" %}  <!--Alert Delay-->
+			<label>{{dictionary['smoke7']}}：</label>
+			<input class="mytext" type="number" name="select7" min="0" max="60" value={{rr.registers[6]}}><br />
+			{%endif%}
+			{%if model[60][seti]=="1" %}  <!--Action Delay-->
+			<label>{{dictionary['smoke8']}}：</label>
+			<input class="mytext" type="number" name="select8" min="0" max="60" value={{rr.registers[7]}}><br />
+			{%endif%}
+			{%if model[61][seti]=="1" %}  <!--Fire1 Delay-->
+			<label>{{dictionary['smoke9']}}：</label>
+			<input class="mytext" type="number" name="select9" min="0" max="60" value={{rr.registers[8]}}><br />
+			{%endif%}
+			{%if model[62][seti]=="1" %}  <!--Fire2 Delay-->
+			<label>{{dictionary['smoke10']}}：</label>
+			<input class="mytext" type="number" name="select10" min="0" max="60" value={{rr.registers[9]}}><br />
+			{%endif%}
+
+
+
+			<div style="cursor:pointer" onclick="isHidden('div1')">more</br></div>
+			<div id ="div1" style="display:none">
+
+			{%if model[64][seti]=="1" %}  <!--SSL Mean Period-->
+			<label>{{dictionary['smoke11']}}：</label>
+			<select class="mytext" name="select12">
+				<option value="15"{% if rr.registers[11]==15 %} selected="selected"{% endif %}>15</option>
+				<option value="60"{% if rr.registers[11]==60 %} selected="selected"{% endif %}>60</option>
+				<option value="120"{% if rr.registers[11]==120 %} selected="selected"{% endif %}>120</option>
+				<option value="240"{% if rr.registers[11]==240 %} selected="selected"{% endif %}>240</option>
+				<option value="480"{% if rr.registers[11]==480 %} selected="selected"{% endif %}>480</option>
+			</select><br>
+			{%endif%}
+			{%if model[65][seti]=="1" %}  <!--Sensitivity Mode 1-->
+			<label>{{dictionary['smoke12']}}：</label>
+			<input class="mytext" type="number" name="select13" min="0.0" step="0.1" value={{sm1}}><br />
+			{%endif%}
+			{%if model[66][seti]=="1" %}  <!--Sensitivity Mode 2-->
+            <label>{{dictionary['smoke13']}}：</label>
+			<input class="mytext" type="number" name="select14" min="0.0" step="0.1" value={{sm2}}><br />
+			{%endif%}
+			{%if model[67][seti]=="1" %}  <!--Smoke Log Enable-->
+            <label>{{dictionary['smoke14']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select15" value="1" {% if rr.registers[14]==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select15" value="0" {% if rr.registers[14]==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[68][seti]=="1" %}  <!--Smoke Log Mode-->
+			<label>{{dictionary['smoke15']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select16" value="1" {% if rr.registers[15]==1 %} checked = "checked"{% endif %}>&nbsp;Rate&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select16" value="0" {% if rr.registers[15]==0 %} checked = "checked"{% endif %}>&nbsp;Change<br />
+			{%endif%}
+			{%if model[69][seti]=="1" %}  <!--Smoke Log Change/Rate-->
+			<label>{{dictionary['smoke16']}}：</label>
+			{% if rr.registers[15]==0 %}
+			<select class="mytext" name="select17" style="width:150px">
+				<option value="1"{% if rr.registers[16]==1 %} selected="selected"{% endif %}>0.01%</option>
+				<option value="2"{% if rr.registers[16]==2 %} selected="selected"{% endif %}>0.05%</option>
+				<option value="3"{% if rr.registers[16]==3 %} selected="selected"{% endif %}>0.1%</option>
+				<option value="4"{% if rr.registers[16]==4 %} selected="selected"{% endif %}>0.2%</option>
+				<option value="5"{% if rr.registers[16]==5 %} selected="selected"{% endif %}>0.5%</option>
+				<option value="6"{% if rr.registers[16]==6 %} selected="selected"{% endif %}>1%</option>
+				<option value="7"{% if rr.registers[16]==7 %} selected="selected"{% endif %}>2%</option>
+				<option value="8"{% if rr.registers[16]==8 %} selected="selected"{% endif %}>5%</option>
+			</select><br>
+			{% endif %}
+			{% if rr.registers[15]==1 %}
+			<select class="mytext" name="select17" style="width:150px">
+				<option value="1"{% if rr.registers[16]==1 %} selected="selected"{% endif %}>1</option>
+				<option value="2"{% if rr.registers[16]==2 %} selected="selected"{% endif %}>10</option>
+				<option value="3"{% if rr.registers[16]==3 %} selected="selected"{% endif %}>60</option>
+				<option value="4"{% if rr.registers[16]==4 %} selected="selected"{% endif %}>300</option>
+				<option value="5"{% if rr.registers[16]==5 %} selected="selected"{% endif %}>600</option>
+				<option value="6"{% if rr.registers[16]==6 %} selected="selected"{% endif %}>1200</option>
+				<option value="7"{% if rr.registers[16]==7 %} selected="selected"{% endif %}>1800</option>
+				<option value="8"{% if rr.registers[16]==8 %} selected="selected"{% endif %}>3600</option>
+			</select><br>
+			{% endif %}
+			{%endif%}
+			{%if model[70][seti]=="1" %}  <!--Smoke ABS Log Enable-->
+			<label>{{dictionary['smoke17']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select18" value="1" {% if rr.registers[17]==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select18" value="0" {% if rr.registers[17]==0 %} checked = "checked"{% endif %}>&nbsp;OFF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			{%endif%}
+			{%if model[71][seti]=="1" %}  <!--Smoke ABS Log Mode-->
+			<label>{{dictionary['smoke18']}}：</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select19" value="1" {% if rr.registers[18]==1 %} checked = "checked"{% endif %}>&nbsp;Rate&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select19" value="0" {% if rr.registers[18]==0 %} checked = "checked"{% endif %}>&nbsp;Change<br />
+			{%endif%}
+			{%if model[72][seti]=="1" %}  <!--Smoke ABS Log Change/Rate-->
+			<label>{{dictionary['smoke19']}}：</label>
+			{% if rr.registers[18]==0 %}
+			<select class="mytext" name="select20" style="width:150px">
+				<option value="1"{% if rr.registers[19]==1 %} selected="selected"{% endif %}>0.01%</option>
+				<option value="2"{% if rr.registers[19]==2 %} selected="selected"{% endif %}>0.05%</option>
+				<option value="3"{% if rr.registers[19]==3 %} selected="selected"{% endif %}>0.1%</option>
+				<option value="4"{% if rr.registers[19]==4 %} selected="selected"{% endif %}>0.2%</option>
+				<option value="5"{% if rr.registers[19]==5 %} selected="selected"{% endif %}>0.5%</option>
+				<option value="6"{% if rr.registers[19]==6 %} selected="selected"{% endif %}>1%</option>
+				<option value="7"{% if rr.registers[19]==7 %} selected="selected"{% endif %}>2%</option>
+				<option value="8"{% if rr.registers[19]==8 %} selected="selected"{% endif %}>5%</option>
+			</select><br>
+			{% endif %}
+			{% if rr.registers[18]==1 %}
+			<select class="mytext" name="select20" style="width:150px">
+				<option value="1"{% if rr.registers[19]==1 %} selected="selected"{% endif %}>1</option>
+				<option value="2"{% if rr.registers[19]==2 %} selected="selected"{% endif %}>10</option>
+				<option value="3"{% if rr.registers[19]==3 %} selected="selected"{% endif %}>60</option>
+				<option value="4"{% if rr.registers[19]==4 %} selected="selected"{% endif %}>300</option>
+				<option value="5"{% if rr.registers[19]==5 %} selected="selected"{% endif %}>600</option>
+				<option value="6"{% if rr.registers[19]==6 %} selected="selected"{% endif %}>1200</option>
+				<option value="7"{% if rr.registers[19]==7 %} selected="selected"{% endif %}>1800</option>
+				<option value="8"{% if rr.registers[19]==8 %} selected="selected"{% endif %}>3600</option>
+			</select><br>
+			{% endif %}
+			{%endif%}
+			</div>
+			<input id="submit3" name="submit3" type="submit" value={{dictionary['enter']}}>
+		</div>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+	</form>
+
+</body>
+</html>

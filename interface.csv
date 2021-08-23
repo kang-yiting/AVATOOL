@@ -1,0 +1,158 @@
+name,value
+title,AVA
+list1,Settings
+list2,Status
+list3,Smoke
+list4,Flow
+list5,Filter
+list6,System
+list7,Advanced
+list8,Zone Relay
+address,Address
+pipe,Pipe
+port,Port
+baudrate,Baudrate
+timeout,Timeout
+model,Model
+status1,Zone Condition
+status2,Fault Condition
+status3,Fire 2 
+status4,Fire 1
+status5,Action
+status6,Alert
+status7,Isolate
+status8,Fault
+status9,Device Condition
+smoke1,Zone Used
+smoke2,Full Scale Sensitivity
+smoke3,Alert Bargraph Level
+smoke4,Action Bargraph Level
+smoke5,Fire 1 Bargraph Level
+smoke6,Fire 2 Level
+smoke7,Alert Delay
+smoke8,Action Delay
+smoke9,Fire1 Delay
+smoke10,Fire2 Delay
+smoke11,SSL Mean Period
+smoke12,Sensitivity Mode 1
+smoke13,Sensitivity Mode 2
+smoke14,Smoke Log Enable
+smoke15,Smoke Log Mode
+smoke16,Smoke Log Change/Rate
+smoke17,Smoke ABS Log Enable
+smoke18,Smoke ABS Log Mode
+smoke19,Smoke ABS Log Change/Rate
+flow1,Pipe Used
+flow2,Pipe Flow High
+flow3,Pipe Flow Low
+flow4,Pipe Fan Speed
+flow5,Flow Sensitivity
+flow6,Auto Normalization
+flow7,Flow Normalization
+flow8,Flow Log Enable
+flow9,Flow Log Mode
+flow10,Flow Log Change/Rate
+flow11,Flow Raw Log Enable
+flow12,Flow Raw Log Mode
+flow13,Flow Raw Log Change/Rate
+filter1,Filter Used
+filter2,New Filter
+filter3,Filter Due 
+system1,Address
+system2,Year
+system3,Month
+system4,Day
+system5,Hour
+system6,Minute
+system7,Second
+system8,RTC
+system9,Default
+system10,Relay Board 1 Used
+system11,Relay Board 2 Used
+system12,LED Board 1 Used
+system13,LED Board 2 Used
+system14,Display Board Used
+system15,Panel buzzer status
+system16,Panel display mode
+system17,Test Button Enable
+system18,Silence Button Enable
+system19,Isolate Button Enable
+system20,Reset Button Enable
+system21,Cascade Alarm
+system22,Alarm Latch
+system23,Fault Latch
+system24,Fault Delay
+system25,Relay 1 Function
+system26,Relay 2 Function
+system27,Relay 3 Function
+system28,Relay 4 Function
+system29,Relay 5 Function
+system30,Relay 6 Function
+system31,Relay 7 Function
+system32,GPI 1 Function
+system33,GPI 2 Function
+system34,GPI 3 Function
+system35,GPI 4 Function
+system36,GPI 5 Function
+system37,GPI 6 Function
+system38,GPI 7 Function
+system39,GPI 8 Function
+system40,Scan enabled
+system41,Scan level
+system42,Scan time
+advanced1,Aux. Sensor Board Used
+advanced2,Smoke Offset
+advanced3,Smoke Factor
+enter,Enter
+device1,Mains Fault
+device2,Battery Fault
+device3,Power Fault
+device4,RTC Fault
+device5,GPI Sensitivity Fault
+device6,Fan Board 1 Comms Fault
+device7,Fan Board 2 Comms Fault
+device8,Zone Relay Board 1 Comms Fault
+device9,Zone Relay Board 2 Comms Fault
+device10,LED Board 1 Comms Fault
+device11,LED Board 2 Comms Fault
+device12,Programmer Board Comms Fault
+zonerelay1,Rel1OutputFunction
+zonerelay2,Rel2OutputFunction
+zonerelay3,Rel3OutputFunction
+zonerelay4,Rel4OutputFunction
+DetectionCondition1,FIRE2.
+DetectionCondition2,FIRE1.
+DetectionCondition3,ACTION.
+DetectionCondition4,ALERT.
+DetectionCondition5,Aux. Sensor Alarm 1.
+DetectionCondition6,Aux. Sensor Alarm 2.
+DetectionCondition7,Isolate.
+DetectionCondition8,General Fault.
+DetectionCondition9,Detection Fault.
+DetectionCondition10,Flow Fault.
+DetectionCondition11,System Fault.
+DetectionCondition12,Aux. Sensor Fault.
+DetectionCondition13,Reserved
+DetectionCondition14,Reserved
+DetectionCondition15,Smoke Learn in progress...
+DetectionCondition16,Flow Normalization in progress...
+FaultCondition1,Smoke Level Raw low fault.
+FaultCondition2,Smoke average high fault.
+FaultCondition3,Fire2 Level high fault.
+FaultCondition4,Smoke Detection Fault.
+FaultCondition5,Reserved
+FaultCondition6,Flow High Fault.
+FaultCondition7,Flow Low Fault.
+FaultCondition8,Flow Normalization Failed.
+FaultCondition9,Flow Sensor Fault.
+FaultCondition10,Fan Fault.
+FaultCondition11,Filter Blocked.
+FaultCondition12,Filter Removed.
+FaultCondition13,Filter Due.
+FaultCondition14,Reserved
+FaultCondition15,Aux. Sensor Comms Fault.
+FaultCondition16,HSSD Comms Fault.
+pipe1,Pipe 1 
+pipe2,Pipe 2 
+pipe3,Pipe 3 
+pipe4,Pipe 4 

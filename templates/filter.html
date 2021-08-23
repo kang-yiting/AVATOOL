@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" href="/static/images/LOGO_title.PNG" type="image/x-icon"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+
+        <title>{{dictionary['title']}}</title>
+		<style type="text/css">
+
+		.Data-Content {
+        width: 100%; /* 表單寬度 */
+        line-height: 38px;
+		}
+
+		.Data-Title {
+			float: left;
+			width: 50%; /* Label寬度，視情況調整 */
+			margin-right: 20px;
+		}
+
+		.Data-Items {
+			float: left;
+			width: 25%;
+			line-height:39px;
+		}
+
+		.AlignRight {
+			text-align: right;
+		}
+
+		.mytext {
+			width: 150px;
+			padding: 2px; //欄位內距
+			height:45px;
+		}
+
+		.mytext2 {
+		width: 55px;
+		padding: 1px; //欄位內距
+		}
+
+		</style>
+
+		<script>
+		function isHidden(oDiv){
+		var vDiv = document.getElementById(oDiv);
+		vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';
+		}
+		</script>
+</head>
+
+<body>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+            <img src="/static/images/LOGO.PNG" width="120px;" style="margin-right: 5px;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+				<a class="nav-item nav-link active" href=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+				<form id="form3" name="form3" method="post" action={{url_for('filter_model') }}>
+				<label>{{dictionary['model']}}：</label>
+				<select name="model" class="mytext">
+				{%for i in range(1,modelsize)%}
+				<option value="{{model[0][i]}}" {% if model[1][i]!=Null%}{% if modelvalue==model[0][i] %} selected= "selected"{% endif %}>{{model[1][i]}}{% endif %}</option>
+				{%endfor%}
+				</select>&nbsp;&nbsp;
+				<input id="submit1" name="submit1" type="submit" value="Read">
+				</form>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+				<form id="form2" name="form2" method="post" action={{url_for('filter_addr') }}>
+				<label>{{dictionary['address']}}：</label>
+				<input class="mytext2" type="number" min=1 max=250 name="addr" value={{addr}}>&nbsp;
+				<input id="submit2" name="submit2" type="submit" value="Read">
+
+				</form>
+
+                </div>
+            </div>
+        </nav>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+	<!---Menu---------------->
+	<form id="button1" name="button1" style="position: absolute; top:14%;right:90%;">
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/settings">{{dictionary['list1']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/status">{{dictionary['list2']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/smoke">{{dictionary['list3']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/flow">{{dictionary['list4']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-secondary" href="http://127.0.0.1:5000/filter">{{dictionary['list5']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/system">{{dictionary['list6']}}</a><br />
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/advanced">{{dictionary['list7']}}</a><br />
+		{%if model[88][seti]=="1" %}
+		<a style="width:120px;height:40px;" class="btn btn-light" href="http://127.0.0.1:5000/zone_relay">{{dictionary['list8']}}</a><br />{%endif%}
+	</form>
+
+	<form id="form1" name="form1" method="post" action={{url_for('filter_parameter') }}>
+	<div class="Data-Content">
+		<div class="Data-Title">
+			<div class="AlignRight">
+			{%if model[86][seti]=="1" %}
+			<label>{{dictionary['filter1']}}：</label>
+			<input type="radio" name="select1" value="1" {% if fu==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select1" value="0" {% if fu==0 %} checked = "checked"{% endif %}>&nbsp;OFF<br />
+			{%endif%}
+			{%if model[87][seti]=="1" %}
+            <label>{{dictionary['filter2']}}：</label>
+			<input type="radio" name="select2" value="1" {% if nf==1 %} checked = "checked"{% endif %}>&nbsp;ON&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="select2" value="0" {% if nf==0 %} checked = "checked"{% endif %}>&nbsp;OFF<br />
+			{%endif%}
+			<input id="submit3" name="submit3" type="submit" value={{dictionary['enter']}}>
+			</div>
+		</div>
+	</div>
+	</form>
+	<form style="position: absolute; top:37%;right:10%;">
+	{{dictionary['filter3']}} ： 20{{year}}/{{month}}/{{day}}
+	</form>
+</body>
+</html>

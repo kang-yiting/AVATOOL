@@ -1,0 +1,6 @@
+addr,250
+port,'COM3'
+baud,19200
+timeout,1
+model,1
+language,1

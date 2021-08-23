@@ -1,0 +1,158 @@
+name,value
+title,AVA
+list1,設定
+list2,狀態
+list3,煙霧
+list4,氣流
+list5,過濾
+list6,系統
+list7,進階
+list8,防區繼電器
+address,設備地址
+pipe,管
+port,端口
+baudrate,波特率
+timeout,超時
+model,型號
+status1,防區狀況
+status2,錯誤狀況
+status3,火警2
+status4,火警1
+status5,行動
+status6,預警
+status7,隔離
+status8,錯誤
+status9,設備狀況
+smoke1,防區使用
+smoke2,煙霧滿刻度閥值
+smoke3,煙霧警覺警報刻度
+smoke4,煙霧行動警報刻度
+smoke5,煙霧火警1警報刻度
+smoke6,煙霧火警2警報閥值
+smoke7,煙霧警報延時
+smoke8,煙霧行動警報延時
+smoke9,煙霧火警1警報延時
+smoke10,煙霧火警2警報延時
+smoke11,相對刻度/絕對刻度
+smoke12,煙霧靈敏度模式1
+smoke13,煙霧靈敏度模式2
+smoke14,煙霧相對值記錄使能
+smoke15,煙霧相對值記錄方式
+smoke16,煙霧相對值記錄變化
+smoke17,煙霧絕對值記錄使能
+smoke18,煙霧絕對值記錄方式
+smoke19,煙霧絕對值記錄變化
+flow1,管路使用
+flow2,氣流高閥值
+flow3,氣流低閥值
+flow4,風扇轉速
+flow5,氣流靈敏度模式
+flow6,上電自動標定使能
+flow7,氣流標定
+flow8,氣流百分比記錄使能
+flow9,氣流百分比記錄方式
+flow10,氣流百分比記錄變化
+flow11,氣流原始值記錄使能
+flow12,氣流原始值記錄方式 
+flow13,氣流原始值記錄變化
+filter1,濾網使用
+filter2,新濾網
+filter3,濾網到期日
+system1,設備地址
+system2,年
+system3,月
+system4,日
+system5,時
+system6,分
+system7,秒
+system8,故障不檢測使能
+system9,恢復出廠設置
+system10,繼電器板1使用
+system11,繼電器板2使用
+system12,LED板1使用
+system13,LED板2使用
+system14,LCD板使用
+system15,面板蜂鳴器狀態
+system16,面板顯示模式
+system17,測試鍵鎖定
+system18,靜音鍵鎖定
+system19,隔離鍵鎖定
+system20,復位鍵鎖定
+system21,階段警報
+system22,警報鎖定
+system23,故障鎖定
+system24,故障延時
+system25,Relay 1 Function
+system26,Relay 2 Function
+system27,Relay 3 Function
+system28,Relay 4 Function
+system29,Relay 5 Function
+system30,Relay 6 Function
+system31,Relay 7 Function
+system32,GPI 1 Function
+system33,GPI 2 Function
+system34,GPI 3 Function
+system35,GPI 4 Function
+system36,GPI 5 Function
+system37,GPI 6 Function
+system38,GPI 7 Function
+system39,GPI 8 Function
+system40,掃描啟用
+system41,掃描級別
+system42,掃描時間
+advanced1,輔助傳感器板使用
+advanced2,煙霧校正值
+advanced3,煙霧二次校正用K值
+enter,輸入
+device1,主電故障 
+device2,電池故障
+device3,電源故障
+device4,時鐘故障
+device5,GPI靈敏度衝突故障
+device6,風扇板1通訊故障 
+device7,風扇板2通訊故障
+device8,繼電器板1通訊故障
+device9,繼電器板2通訊故障
+device10,LED板1通訊故障
+device11,LED板2通訊故障
+device12,編程板通訊故障
+zonerelay1,Rel1OutputFunction
+zonerelay2,Rel2OutputFunction
+zonerelay3,Rel3OutputFunction
+zonerelay4,Rel4OutputFunction
+DetectionCondition1,FIRE2火警2
+DetectionCondition2,FIRE1火警1
+DetectionCondition3,ACTION行動
+DetectionCondition4,ALERT警覺
+DetectionCondition5,輔助傳感器一級警報燈狀態
+DetectionCondition6,輔助傳感器二級警報燈狀態
+DetectionCondition7,隔離燈狀態
+DetectionCondition8,總故障
+DetectionCondition9,煙霧故障燈狀態(最低位)
+DetectionCondition10,氣流故障燈狀態
+DetectionCondition11,系統故障燈狀態
+DetectionCondition12,輔助傳感器故障燈狀態
+DetectionCondition13,保留
+DetectionCondition14,保留
+DetectionCondition15,煙霧學習狀態
+DetectionCondition16,氣流標定狀態
+FaultCondition1,煙霧絕對平均值太低故障
+FaultCondition2,煙霧絕對平均值超過20%/m故障
+FaultCondition3,Fire2閥值太高故障
+FaultCondition4,煙霧傳感器失效故障
+FaultCondition5,保留
+FaultCondition6,氣流高故障
+FaultCondition7,氣流低故障
+FaultCondition8,氣流標定故障
+FaultCondition9,氣流傳感器失效故障
+FaultCondition10,風扇失效故障
+FaultCondition11,濾網堵塞故障
+FaultCondition12,濾網移除故障
+FaultCondition13,濾網到期故障
+FaultCondition14,保留
+FaultCondition15,腔通訊故障
+FaultCondition16,擴充傳感器通訊故障
+pipe1,管1
+pipe2,管2
+pipe3,管3
+pipe4,管4
